@@ -1,0 +1,54 @@
+Instructions
+
+How To Play 13
+
+Objective: 
+To play all cards, leaving none in your possession.
+
+Play Procedure:
+Players take turns in a clockwise direction, playing
+cards that will beat the controlling hand. If there
+is no controlling hand, then a player may play any
+legal hand.
+
+Rules
+1. You may play only a legal hand on your turn.
+2. You may skip on your turn.
+3. If you have no legal hands to play, you must skip.
+4. If you start a new round, you may play any type of hand.
+5. A new round starts when every other player has skipped
+   his turn, besides the player currently in control.
+6. A legal hand is a hand of the same type as the 
+   controlling hand, whose high card beats that of the
+   controlling hand.
+7. The only exception to the "same type" rule is that
+   any single 2 can be beaten by a cut, and any pair
+   of 2's can be beaten by a super cut.
+8. Who Starts?
+   a. Play most often starts with the holder of the 3 of
+      spades. That player may choose to play any playable
+      hand containing that card.
+   b. Alternatively, play can begin with the winner of the
+      last game, who can choose to lead with any playable
+      hand.
+
+Playable Hands
+1. single
+2. pairs
+3. three of a kind
+4. four of a kind
+5. straight (3-13 cards)
+6. cut (three consecutive pairs)
+7. super cut (four consecutive pairs)
+
+Suit Order From Lowest To Highest
+1. spade
+2. club
+3. diamond
+4. heart
+
+Number Order From Lowest To Highest
+3-10, J, Q, K, A, 2
+
+So, the 3 of spades is the lowest, and the 2 of
+hearts is the highest. 
