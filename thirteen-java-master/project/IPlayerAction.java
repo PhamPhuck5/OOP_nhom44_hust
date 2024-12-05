@@ -17,6 +17,8 @@
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 import java.util.*;
+
+import hand.VietnameseThirteenHand;
 public interface IPlayerAction {
 	ArrayList<VietnameseThirteenHand> legalMoves();
 }

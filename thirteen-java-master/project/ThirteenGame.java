@@ -1,6 +1,9 @@
 import java.util.*;
-import java.util.Stack;
-public class Thirteen extends CardGame implements IPlayerAction{
+import deck.ThirteenDeck;
+import hand.Hand;
+import hand.VietnameseThirteenHand;
+
+public class ThirteenGame extends CardGame implements IPlayerAction{
 	public static final int SPADE = 0, CLUB = 1, DIAMOND = 2, HEART = 3;
 	boolean[] passed;
 	HandHistory history;
@@ -9,7 +12,7 @@ public class Thirteen extends CardGame implements IPlayerAction{
 	ICardGameListener listener;
 	boolean gameInProgress = false;
 	Stack<String> messages;
-	public Thirteen(){
+	public ThirteenGame(){
 		maxPlayers = 4;
 		controllingHand = new VietnameseThirteenHand();
 		listener = new ThirteenAdapter();//*note
@@ -50,8 +53,8 @@ public class Thirteen extends CardGame implements IPlayerAction{
 		}
 		controllingPlayer = getPlayer(0);
 		controllingHand.clearHand();
-		deck = new Deck();
-		deck.shuffle();
+		thirteenDeck = new ThirteenDeck();
+		thirteenDeck.shuffle();
 		
 		for(int i=0;i<players.size();i++)
 			getPlayer(i).getHand().clearHand();
@@ -60,7 +63,7 @@ public class Thirteen extends CardGame implements IPlayerAction{
 		for(int i=0;i<13;i++)
 			for(int j=0;j<players.size();j++){
 				currentPlayer = getPlayer(j);
-				currentPlayer.getHand().addCard(deck.dealCard());
+				currentPlayer.getHand().addCard(thirteenDeck.dealCard());
 			}
 		listener.playerHandsDealt();
 				
@@ -191,7 +194,7 @@ public class Thirteen extends CardGame implements IPlayerAction{
 		controllingHand.clearHand();
 		controllingHand.addCards(h);
 	}
-	public boolean terminalTest(Thirteen t){
+	public boolean terminalTest(ThirteenGame t){
 		int sum = 0;
 		for(int i=0;i<players.size();i++){
 			if(getPlayer(i).getHand().isEmpty()) sum++;
@@ -206,7 +209,7 @@ public class Thirteen extends CardGame implements IPlayerAction{
 		p.setHand(new VietnameseThirteenHand());
 	}
 	public static void main(String[] args) {
-		Thirteen foo = new Thirteen();
+		ThirteenGame foo = new ThirteenGame();
 		//foo.addPlayer(new QueryPlayer(foo,"Jamie"));
 		foo.addPlayer(new RandomPlayer(foo,"Jamie"));
 		foo.addPlayer(new AIPlayer(foo,"Lisa"));

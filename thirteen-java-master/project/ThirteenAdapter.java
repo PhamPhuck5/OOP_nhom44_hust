@@ -1,3 +1,4 @@
+import hand.Hand;
 
 public class ThirteenAdapter implements ICardGameListener {
 

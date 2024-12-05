@@ -1,20 +1,22 @@
+package hand;
 import java.util.*;
-public class VietnameseThirteenHand extends PokerHand {
-	public static String STRAIGHT3 = "3-card straight", STRAIGHT4 ="4-card straight",
+
+import card.Card;
+public class VietnameseThirteenHand extends Hand {
+	private static String STRAIGHT3 = "3-card straight", STRAIGHT4 ="4-card straight",
 		STRAIGHT5="5-card straight",STRAIGHT6="6-card straight",
 		STRAIGHT7="7-card straight",STRAIGHT8="8-card straight",
 		STRAIGHT9="9-card straight",STRAIGHT10="10-card straight",
 		STRAIGHT11="11-card straight",STRAIGHT12="12-card straight",
 		STRAIGHT13="13-card straight",CUT="cut",SUPERCUT="supercut";	
-
-		private ArrayList<ArrayList<Card>> buckets = new ArrayList<>();
-		private boolean bucketsRight = false;
-
+	private static String SINGLE="single", PAIR="pair", THREEOFAKIND="three of a kind",
+			FOUROFAKIND="four of a kind";
+	private ArrayList<ArrayList<Card>> buckets = new ArrayList<>();
+	private boolean bucketsRight = false;
 	public VietnameseThirteenHand(){
 		super();
 		init();
 		createBucket();
-		debug = false;
 	}
 	public VietnameseThirteenHand(Card c){
 		super(c);
@@ -74,7 +76,7 @@ public class VietnameseThirteenHand extends PokerHand {
 		else if(isFourOfAKind(h)) type = FOUROFAKIND;
 		else if(isCut(h)) type = CUT;
 		else if(isSuperCut(h)) type = SUPERCUT;
-		else if( PokerHand.isStraight(h)){
+		else if( Hand.isStraight(h)){
 			switch(h.cardCount()){
 				 case 3: type = STRAIGHT3; break;
 				 case 4: type = STRAIGHT4; break;
@@ -127,11 +129,10 @@ public class VietnameseThirteenHand extends PokerHand {
 		else val = getHighestCard(this).evaluateCard();
 		return val; 
 	}
+	/*//method main only for test
 	public static void main(String args[]){
 		Deck d = new Deck();
-		echo("Original\n"+d);
 		d.shuffle();
-		echo("Shuffled\n"+d);
 		Hand h = new VietnameseThirteenHand();
 		
 		Card a;
@@ -178,10 +179,9 @@ public class VietnameseThirteenHand extends PokerHand {
 			echo(""+v.get(i));
 		//echo("Possible straights:" + ((VietnameseThirteenHand)h).getPossibleStraightsAlt());
 	}
+	*/
 
-	/**
-	 * Returns true if hand a can beat hand b.
-	 */
+
 	public boolean canBeatHand(Hand a, Hand b){
 		if(!sameHandType(a,b)) return false; // make sure they are of same type
 		if(isLess(a,b)) return false; // make sure that b > a
@@ -239,7 +239,7 @@ public class VietnameseThirteenHand extends PokerHand {
 		hands.add(new VietnameseThirteenHand());
 		hands.addAll(getPossibleSingles());
 		hands.addAll(getPossibleFours());//*note
-		hands.addAll(getPossiblePairsAlt());
+		hands.addAll(getPossiblePairs());
 		hands.addAll(getPossibleStraightsAlt());
 		hands.addAll(getPossibleCuts());
 		// create pairs
@@ -343,7 +343,7 @@ public class VietnameseThirteenHand extends PokerHand {
 	}
 	
 
-	public ArrayList<VietnameseThirteenHand> getPossiblePairsAlt(){
+	public ArrayList<VietnameseThirteenHand> getPossiblePairs(){
 		ArrayList<VietnameseThirteenHand> ret = new ArrayList<VietnameseThirteenHand>();
 		VietnameseThirteenHand h= new VietnameseThirteenHand();
 		getBuckets();
@@ -369,7 +369,7 @@ public class VietnameseThirteenHand extends PokerHand {
 		return hands;
 	}
 	public ArrayList<VietnameseThirteenHand> getPossibleCuts(){
-		ArrayList<VietnameseThirteenHand> ret = new ArrayList<VietnameseThirteenHand>(), pairs = getPossiblePairsAlt();
+		ArrayList<VietnameseThirteenHand> ret = new ArrayList<VietnameseThirteenHand>(), pairs = getPossiblePairs();
 		int last = 0;
 		Card c;
 		Hand h ,tmp=new VietnameseThirteenHand();

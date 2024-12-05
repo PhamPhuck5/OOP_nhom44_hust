@@ -17,6 +17,8 @@
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 import java.util.*;
+
+import hand.Hand;
 public class HandHistory {
 	protected ArrayList<Hand> hands = new ArrayList<Hand>();
 	public void addHand(Hand h){

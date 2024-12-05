@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 
+import deck.ThirteenDeck;
+
 /*
  * Jamie Ly
  * jal39@drexel.edu
@@ -48,12 +50,12 @@ public class PlayerView extends JPanel {
 	}
 	public static void main(String[] args) {
 
-		Thirteen game = new Thirteen();
+		ThirteenGame game = new ThirteenGame();
 		game.addPlayer(new QueryPlayer(game,"Jamie"));
 		game.addPlayer(new QueryPlayer(game,"Lisa"));
 		game.addPlayer(new QueryPlayer(game,"Andrew"));
 		game.addPlayer(new QueryPlayer(game,"Yang"));
-		Deck d = new Deck();
+		ThirteenDeck d = new ThirteenDeck();
 		for(int i=0;i<game.playersCount();i++){
 			for(int j=0;j<13;j++){
 				game.getPlayer(i).getHand().addCard(d.dealCard());

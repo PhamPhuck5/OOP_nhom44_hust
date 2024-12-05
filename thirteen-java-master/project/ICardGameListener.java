@@ -1,3 +1,4 @@
+import hand.Hand;
 
 public interface ICardGameListener {
 	public void newGameStarted();

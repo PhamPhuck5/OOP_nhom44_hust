@@ -1,29 +1,12 @@
-/*
- * Jamie Ly
- * jal39@drexel.edu
- * CS ##:TITLE
- * Assignment ## Program ##
- * 
- * Created on May 14, 2004
- *
- * To change the template for this generated file go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
- */
+package hand;
 
-/**
- * @author DaAznAngel
- *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
- */
-import java.util.*;
-public class PokerHand extends Hand {
-	public static String SINGLE="single", PAIR="pair", THREEOFAKIND="three of a kind",
+//import java.util.*;
+//import card.Card;
+public class PokerHand{ //extends Hand {
+/*	private static String SINGLE="single", PAIR="pair", THREEOFAKIND="three of a kind",
 		FOUROFAKIND="four of a kind", FULLHOUSE="full house", FLUSH="flush",
 		STRAIGHT="straight",STRAIGHTFLUSH="straight flush", ROYALFLUSH="royal flush";
-	/**
-	 * 
-	 */
+
 	public PokerHand() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -134,5 +117,5 @@ public class PokerHand extends Hand {
 	}
 	public Object clone(){
 		return null;
-	}
+	}*/
 }

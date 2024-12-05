@@ -1,3 +1,5 @@
+import hand.Hand;
+
 class ThirteenAppListener implements ICardGameListener{
 	ThirteenApplication app;
 	public ThirteenAppListener(ThirteenApplication t){

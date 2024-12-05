@@ -17,6 +17,10 @@
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 import java.util.*;
+
+import hand.Hand;
+import hand.VietnameseThirteenHand;
+
 import java.io.*;
 public class QueryPlayer extends Player {
 
@@ -24,7 +28,7 @@ public class QueryPlayer extends Player {
 	 * @param g
 	 * @param n
 	 */
-	public QueryPlayer(Thirteen g, String n) {
+	public QueryPlayer(ThirteenGame g, String n) {
 		super(g, n);
 	}
 

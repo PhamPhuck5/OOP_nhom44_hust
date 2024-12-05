@@ -17,11 +17,14 @@
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 import java.util.*;
+
+import hand.Hand;
+import hand.VietnameseThirteenHand;
 //for thirteen only
 public class AIPlayer extends ComputerPlayer {
 
 
-	public AIPlayer(Thirteen g, String n) {
+	public AIPlayer(ThirteenGame g, String n) {
 		super(g, n);
 	}
 

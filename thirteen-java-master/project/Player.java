@@ -1,3 +1,5 @@
+import hand.Hand;
+
 public abstract class Player extends MyObject {
 	String name;
 	CardGame game;

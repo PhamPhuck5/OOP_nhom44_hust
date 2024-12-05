@@ -1,9 +1,12 @@
 //import java.util.*;
+
+import hand.Hand;
+
 public class GUIPlayer extends Player {
 	ThirteenApplication app;
 	Hand selectedHand = null;
 
-	public GUIPlayer(Thirteen g, String n) {
+	public GUIPlayer(ThirteenGame g, String n) {
 		super(g, n);
 
 	}

@@ -1,4 +1,10 @@
 import javax.swing.*;
+
+import card.Card;
+import deck.ThirteenDeck;
+import hand.Hand;
+import hand.VietnameseThirteenHand;
+
 import java.awt.*;
 //import java.util.*;
 public class HistoryFrame extends JInternalFrame {
@@ -9,12 +15,12 @@ public class HistoryFrame extends JInternalFrame {
 	protected Color[] colors = new Color[2];
 	protected HandHistory history;
 
-	protected Thirteen game;
+	protected ThirteenGame game;
 	protected JLabel label;
 	/**
 	 * 
 	 */
-	public HistoryFrame(Thirteen game) {
+	public HistoryFrame(ThirteenGame game) {
 		super();
 		colors[0] = Color.WHITE;
 		colors[1] = Color.YELLOW;
@@ -32,10 +38,10 @@ public class HistoryFrame extends JInternalFrame {
 		this.show();
 		// load image icons for the suits
 		try{
-			suits[Thirteen.SPADE] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/spade.gif"));
-			suits[Thirteen.CLUB] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/club.gif"));
-			suits[Thirteen.DIAMOND] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/diamond.gif"));
-			suits[Thirteen.HEART] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/heart.gif"));  
+			suits[ThirteenGame.SPADE] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/spade.gif"));
+			suits[ThirteenGame.CLUB] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/club.gif"));
+			suits[ThirteenGame.DIAMOND] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/diamond.gif"));
+			suits[ThirteenGame.HEART] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/heart.gif"));  
 		} catch(Exception e){
 			System.out.println("Could not load suit images.");
 			System.exit(1);
@@ -86,7 +92,7 @@ public class HistoryFrame extends JInternalFrame {
 	}
 
 	public static void main(String[] args) {
-		Deck d = new Deck();
+		ThirteenDeck d = new ThirteenDeck();
 //		Vector hands = new Vector();
 		Hand h;
 		HistoryFrame history = new HistoryFrame(null);

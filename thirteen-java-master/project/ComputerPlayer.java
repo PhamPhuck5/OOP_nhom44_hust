@@ -1,10 +1,13 @@
 import java.util.*;
+
+import hand.Hand;
+
 import java.io.*;
 public class ComputerPlayer extends Player {
 	protected ArrayList<ArrayList<Taunt>> tauntList = new ArrayList<ArrayList<Taunt>>();
 	
 
-	public ComputerPlayer(Thirteen g, String n) {
+	public ComputerPlayer(ThirteenGame g, String n) {
 		super(g, n);
 		loadTaunts();
 	}

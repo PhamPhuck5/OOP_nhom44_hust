@@ -1,6 +1,10 @@
 
 import java.awt.*;
 import javax.swing.*;
+
+import deck.ThirteenDeck;
+import hand.VietnameseThirteenHand;
+
 import java.util.*;
 /*
  * Jamie Ly
@@ -24,7 +28,7 @@ public class ThirteenApplication extends JFrame implements IPlayerAction{
     private static final long serialVersionUID = 1L;//*note
 
 
-	Thirteen game; JInternalFrame historyFrame, gameFrame;
+	ThirteenGame game; JInternalFrame historyFrame, gameFrame;
 	HumanPlayerView human;
 	HintFrame hintFrame;
 	JPanel controllingHand, messagePanel;
@@ -34,7 +38,7 @@ public class ThirteenApplication extends JFrame implements IPlayerAction{
 	 * @throws java.awt.HeadlessException
 	 */
 	
-	public ThirteenApplication(Thirteen g) throws HeadlessException {
+	public ThirteenApplication(ThirteenGame g) throws HeadlessException {
 		super();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -115,11 +119,11 @@ public class ThirteenApplication extends JFrame implements IPlayerAction{
 	public ArrayList<VietnameseThirteenHand> legalMoves(){
 		return getGame().legalMoves();
 	}
-	public Thirteen getGame(){
+	public ThirteenGame getGame(){
 		return game;
 	}
 	public static void main(String[] args) {
-		Thirteen foo = new Thirteen();
+		ThirteenGame foo = new ThirteenGame();
 		
 		// players
 		Player[] players = new Player[4];
@@ -131,7 +135,7 @@ public class ThirteenApplication extends JFrame implements IPlayerAction{
 		for(int i=0;i<players.length;i++)
 			foo.addPlayer(players[i]);
 		
-		Deck d = new Deck();
+		ThirteenDeck d = new ThirteenDeck();
 		d.shuffle();
 		for(int i=0;i<4;i++){
 			for(int j=0;j<13;j++)

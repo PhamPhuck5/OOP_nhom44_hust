@@ -1,3 +1,5 @@
+package hand;
+import card.Card;
 
 public interface ICardContainer {
 	public int cardCount();

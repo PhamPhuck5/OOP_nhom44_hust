@@ -18,13 +18,16 @@
  */
 import java.util.*;
 
+import hand.Hand;
+import hand.VietnameseThirteenHand;
+
 public class RandomPlayer extends ComputerPlayer {
 
 	/**
 	 * @param g
 	 * @param n
 	 */
-	public RandomPlayer(Thirteen g, String n) {
+	public RandomPlayer(ThirteenGame g, String n) {
 		super(g, n);
 		// TODO Auto-generated constructor stub
 	}

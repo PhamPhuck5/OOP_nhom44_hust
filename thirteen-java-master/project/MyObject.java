@@ -1,21 +1,3 @@
-/*
- * Jamie Ly
- * jal39@drexel.edu
- * CS ##:TITLE
- * Assignment ## Program ##
- * 
- * Created on May 13, 2004
- *
- * To change the template for this generated file go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
- */
-
-/**
- * @author DaAznAngel
- *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
- */
 
 import java.util.*;
 public class MyObject {
@@ -27,7 +9,7 @@ public class MyObject {
         if (!initIntegers) {
             initIntegers = true;
             for (int i = 0; i < 13; i++) {
-            	INTEGERS.add(i); // Thêm các số nguyên từ 0 đến 999 vào danh sách
+            	INTEGERS.add(i);
             }
         }
     }
@@ -55,7 +37,7 @@ public class MyObject {
 	public void setDebug(boolean b) {
 		debug = b;
 	}
-
+/*
 	  public static <T extends Comparable<T>> void quickSort(ArrayList<T> elements)
 	  { if (! elements.isEmpty())
 		{ 
@@ -94,7 +76,7 @@ public class MyObject {
 	        if (lowToHighIndex < highIndex) {
 	            quickSort(elements, lowToHighIndex, highIndex);
 	        }
-	  }
+	  }*/
 	public static void echo(Object o){
 		System.out.println(o);
 	}

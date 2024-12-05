@@ -1,4 +1,8 @@
 import javax.swing.*;
+
+import card.Card;
+import hand.Hand;
+
 import java.awt.*;
 /*
  * Jamie Ly
@@ -21,14 +25,14 @@ import java.awt.*;
 public class HintFrame extends JInternalFrame {
     private static final long serialVersionUID = 1L;//*note
 
-	protected Thirteen game; protected JLabel label;
+	protected ThirteenGame game; protected JLabel label;
 	protected JPanel content;
 	ImageIcon[] suits = new ImageIcon[4];
 	Player p;
 	/**
 	 * 
 	 */
-	public HintFrame(Thirteen game) {
+	public HintFrame(ThirteenGame game) {
 		super();
 		setBackground(Color.PINK);
 		setTitle("Hint");
@@ -40,10 +44,10 @@ public class HintFrame extends JInternalFrame {
 		//this.pack();
 		this.show();
 		try{
-			suits[Thirteen.SPADE] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/spade.gif"));
-			suits[Thirteen.CLUB] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/club.gif"));
-			suits[Thirteen.DIAMOND] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/diamond.gif"));
-			suits[Thirteen.HEART] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/heart.gif"));  
+			suits[ThirteenGame.SPADE] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/spade.gif"));
+			suits[ThirteenGame.CLUB] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/club.gif"));
+			suits[ThirteenGame.DIAMOND] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/diamond.gif"));
+			suits[ThirteenGame.HEART] = new ImageIcon(Toolkit.getDefaultToolkit().getImage("./images/heart.gif"));  
 		} catch(Exception e){
 			System.out.println("Could not load suit images.");
 			System.exit(1);

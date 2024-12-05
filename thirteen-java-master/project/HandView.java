@@ -1,6 +1,12 @@
 import java.awt.event.*;
 //import java.awt.geom.*;
 import javax.swing.*;
+
+import card.Card;
+import deck.ThirteenDeck;
+import hand.Hand;
+import hand.VietnameseThirteenHand;
+
 import java.awt.*;
 //import java.util.*;
 
@@ -94,7 +100,7 @@ public class HandView extends JPanel implements MouseListener{
 		}
 	}
 	public static void main(String[] args) {
-		Deck d = new Deck();
+		ThirteenDeck d = new ThirteenDeck();
 		d.shuffle();
 		Hand h = new VietnameseThirteenHand(),h2=new VietnameseThirteenHand();
 		for(int i=0;i<13;i++){

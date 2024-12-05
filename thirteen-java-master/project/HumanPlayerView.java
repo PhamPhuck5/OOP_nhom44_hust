@@ -1,5 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
+
+import hand.Hand;
+import hand.VietnameseThirteenHand;
+
 import java.util.*;
 import java.awt.event.*;
 
@@ -60,8 +64,8 @@ public class HumanPlayerView extends PlayerView implements ActionListener{
 		ready = false;
 		cmbxMoves.removeAllItems();
 		//System.out.println("Current:"+player.getGame().currentPlayer.getName());
-		if(((Thirteen)player.getGame()).currentPlayer == player){
-			ArrayList<VietnameseThirteenHand> v = ((Thirteen)player.getGame()).legalMoves();//*note
+		if(((ThirteenGame)player.getGame()).currentPlayer == player){
+			ArrayList<VietnameseThirteenHand> v = ((ThirteenGame)player.getGame()).legalMoves();//*note
 			//System.out.println("available moves:"+v);
 			/*
 			if(v.size()==1)
@@ -94,7 +98,7 @@ public class HumanPlayerView extends PlayerView implements ActionListener{
 		}
 		else if(e.getSource() == btnSubmit){
 			System.out.println("SUBMIT");
-			ArrayList<VietnameseThirteenHand> v = ((Thirteen)player.getGame()).legalMoves();//*note
+			ArrayList<VietnameseThirteenHand> v = ((ThirteenGame)player.getGame()).legalMoves();//*note
 			boolean isLegal = false;
 			for(int i=0;i<v.size();i++){
 				isLegal = isLegal || ((Hand)v.get(i)).equals(handView.getSelected());

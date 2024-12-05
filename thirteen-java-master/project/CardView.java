@@ -1,5 +1,8 @@
 import java.awt.LayoutManager;
 import javax.swing.*;
+
+import card.Card;
+
 import java.awt.*;
 //import java.io.File;
 
@@ -56,10 +59,10 @@ public class CardView extends JPanel {
 	public static void paintCard(int x, int y, Graphics g,Card c,Color cardColor, boolean viewable){
 		
 		if(!imagesLoaded){
-			suitImages[Thirteen.SPADE]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/spade.gif");
-			suitImages[Thirteen.CLUB]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/club.gif");
-			suitImages[Thirteen.DIAMOND]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/diamond.gif");
-			suitImages[Thirteen.HEART]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/heart.gif");
+			suitImages[ThirteenGame.SPADE]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/spade.gif");
+			suitImages[ThirteenGame.CLUB]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/club.gif");
+			suitImages[ThirteenGame.DIAMOND]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/diamond.gif");
+			suitImages[ThirteenGame.HEART]= Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"images/heart.gif");
 //			System.out.println("Current directory: " + new File(".").getAbsolutePath());		
 			imagesLoaded = true;
 		}
