@@ -16,7 +16,6 @@ public class VietnameseThirteenHand extends Hand {
 	public VietnameseThirteenHand(){
 		super();
 		init();
-		createBucket();
 	}
 	public VietnameseThirteenHand(Card c){
 		super(c);
@@ -28,23 +27,8 @@ public class VietnameseThirteenHand extends Hand {
 		init();
 		createBucket();
 	}
-//	public static Hashtable<String,Integer> VALUEVALUES = new Hashtable<String,Integer>();
-	public static void init(){
 	
-//		VALUEVALUES.put(Card.THREE,INTEGERS.get(0));
-//		VALUEVALUES.put(Card.FOUR,INTEGERS.get(1));
-//		VALUEVALUES.put(Card.FIVE,INTEGERS.get(2));
-//		VALUEVALUES.put(Card.SIX,INTEGERS.get(3));
-//		VALUEVALUES.put(Card.SEVEN,INTEGERS.get(4));
-//		VALUEVALUES.put(Card.EIGHT,INTEGERS.get(5));
-//		VALUEVALUES.put(Card.NINE,INTEGERS.get(6));
-//		VALUEVALUES.put(Card.TEN,INTEGERS.get(7));
-//		VALUEVALUES.put(Card.JACK,INTEGERS.get(8));
-//		VALUEVALUES.put(Card.QUEEN,INTEGERS.get(9));
-//		VALUEVALUES.put(Card.KING,INTEGERS.get(10));
-//		VALUEVALUES.put(Card.ACE,INTEGERS.get(11));
-//		VALUEVALUES.put(Card.TWO,INTEGERS.get(12));
-
+	public static void init(){
 		handTypes.put(SINGLE,SINGLE); handTypes.put(PAIR,PAIR);
 		handTypes.put(THREEOFAKIND,THREEOFAKIND);
 		handTypes.put(FOUROFAKIND,FOUROFAKIND);
@@ -67,6 +51,23 @@ public class VietnameseThirteenHand extends Hand {
 		for (int i = 0; i < size; i++) {
             buckets.add(new ArrayList<Card>());
         }
+	}
+	private void clearBucket() {
+		int size = Card.VALUEVALUES.size();
+		for (int i = 0; i < size; i++) {
+            buckets.get(i).clear();
+        }
+	}
+	private ArrayList<ArrayList<Card>> getBuckets(){
+		if(buckets.size()==0) createBucket();
+		if (bucketsRight) return buckets;
+		clearBucket();
+		Card temp;
+		for(int i=0;i<cardCount();i++){
+			temp = getCard(i);
+			buckets.get(temp.getValueValue()).add(temp);
+		}
+		return buckets;
 	}
 	public String getHandType(Hand h){
 		String type="INVALID";
@@ -114,14 +115,14 @@ public class VietnameseThirteenHand extends Hand {
 	public void clearHand(){
 		bucketsRight = false;
 		cards.clear();
-	}//*note 4 ham tren
-	public static boolean isCut(Hand h){
+	}
+	
+	public static boolean isCut(Hand h){//*note
 		return h.cardCount()==6 && true;
 	}//*note
 	public static boolean isSuperCut(Hand h){
 		return h.cardCount()==8 && true;
 	}
-
 
 	public int evaluateHand(){// return the value of the highest card
 		int val;
@@ -186,7 +187,7 @@ public class VietnameseThirteenHand extends Hand {
 		if(!sameHandType(a,b)) return false; // make sure they are of same type
 		if(isLess(a,b)) return false; // make sure that b > a
 		return true;
-	}
+	}//*note
 	public boolean sameHandType(Hand a, Hand b){
 		return getHandType(a) == getHandType(b);
 	}
@@ -202,36 +203,37 @@ public class VietnameseThirteenHand extends Hand {
 		for(int i=0;i<v.size();i++)
 			addCard(((Hand)v.get(i)).getCard(0));
 	}
-//	public static boolean isStraight(Hand h){
-//		boolean ret = true;
-//		ArrayList<VietnameseThirteenHand> v = new ArrayList<VietnameseThirteenHand>();
-//		VietnameseThirteenHand tmp;
-//		for(int i=0;i<h.cardCount();i++){
-//			tmp = new VietnameseThirteenHand();
-//			v.add(tmp);
-//			tmp.addCard(h.getCard(i));
-//		}
-//		quickSort(v);
-//		Hand tmp2 = new VietnameseThirteenHand();
-//		for(int i =0;i<v.size();i++){
-//			tmp2.addCard(((Hand)v.get(i)).getCard(0));
-//		}
-//		//echo("tmp2 hand:"+tmp2);
-//		if(tmp2.cardCount() == 0) return false;
-//		int val = tmp2.getCard(0).getValueValue();
-//		for(int i =1;i<tmp2.cardCount();i++){
-//			val++;
-//			ret = ret && tmp2.getCard(i).getValueValue()==(val);
-//		}
-//		return ret;
-//	}
+/*	public static boolean isStraight(Hand h){
+		boolean ret = true;
+		ArrayList<VietnameseThirteenHand> v = new ArrayList<VietnameseThirteenHand>();
+		VietnameseThirteenHand tmp;
+		for(int i=0;i<h.cardCount();i++){
+			tmp = new VietnameseThirteenHand();
+			v.add(tmp);
+			tmp.addCard(h.getCard(i));
+		}
+		quickSort(v);
+		Hand tmp2 = new VietnameseThirteenHand();
+		for(int i =0;i<v.size();i++){
+			tmp2.addCard(((Hand)v.get(i)).getCard(0));
+		}
+		//echo("tmp2 hand:"+tmp2);
+		if(tmp2.cardCount() == 0) return false;
+		int val = tmp2.getCard(0).getValueValue();
+		for(int i =1;i<tmp2.cardCount();i++){
+			val++;
+			ret = ret && tmp2.getCard(i).getValueValue()==(val);
+		}
+		return ret;
+	}*/
 	/**
-	 * compare the most value cảd
+	 * compare the highest value cảd
 	 */
 	public int compareTo(Hand o){
-		if(evaluateHand() == ((VietnameseThirteenHand)o).evaluateHand()) return 0;
-		else if(evaluateHand() > ((VietnameseThirteenHand)o).evaluateHand()) return 1;
-		else return -1;
+		if(!sameHandType(this,o)) return -1;
+		if(evaluateHand() == o.evaluateHand()) return 0;
+		if(evaluateHand() > o.evaluateHand()) return 1;
+		return -1;
 	}
 	public ArrayList<VietnameseThirteenHand> getPossibleHands(){
 		// create single-card hands
@@ -243,62 +245,47 @@ public class VietnameseThirteenHand extends Hand {
 		hands.addAll(getPossibleStraightsAlt());
 		hands.addAll(getPossibleCuts());
 		// create pairs
-		
 		return hands;
 	}
 
 	public ArrayList<VietnameseThirteenHand> getPossibleStraightsAlt(){
-		ArrayList<VietnameseThirteenHand> ret= new ArrayList<VietnameseThirteenHand>();
-		int size = Card.VALUEVALUES.size();//13
-		Map<Integer, List<Card>> buckets = new HashMap<>();
-		for (int i = 0; i < size; i++) {
-            buckets.put(i, new ArrayList<>());
-        }
-        Card tempCard;
-        for(int i=0;i<cardCount();i++){
-        	tempCard = getCard(i);
-			buckets.get(tempCard.getValueValue()).add(tempCard);
-		}
-        Hand h;
-		ArrayList<VietnameseThirteenHand> tmp, hands = new ArrayList<VietnameseThirteenHand>();
-		hands.add(new VietnameseThirteenHand());
-		
-		
-		int last = -1;
-		for(int i=0;i<size-1;i++){ // avoid 2
-			if( buckets.get(i).size() > 0 && (i == last + 1 || last == -1)){
-				tmp = new ArrayList<VietnameseThirteenHand>();
-				for(int k=1;k<buckets.get(i).size();k++){ // for each number in the bucket beyond the first
-					for(int m=0;m<hands.size();m++){ // clone each hand
-						h =  hands.get(m);
-						tmp.add((VietnameseThirteenHand)h);
-					}
-				}
-				hands.addAll(tmp);
-				int x;
-				for(int j=0;j<hands.size();j++){
-					h = (VietnameseThirteenHand) hands.get(j);
-					x=j%buckets.get(i).size();
-					h.addCard((Card)buckets.get(i).get(x));
-				}
-				h = (VietnameseThirteenHand) hands.get(0);
-				if(h.cardCount() >= 3){
-					for(int j=0;j<hands.size();j++){
-						h = (VietnameseThirteenHand) hands.get(j);
-						if(h.cardCount()>=3)
-							ret.add((VietnameseThirteenHand)h.clone());
-					}
-				}	
-			}
-			else{
-				hands.clear();
-				hands.add(new VietnameseThirteenHand());
-			}
-			last = i;
+		ArrayList<VietnameseThirteenHand> ret = new ArrayList<VietnameseThirteenHand>();
+		for(int i = 0; i<Card.VALUEVALUES.size();i++){
+			VietnameseThirteenHand newhand = new VietnameseThirteenHand();
+			tryPossibleStraight(i,0,ret,newhand);
 		}
 		return ret;		
+	}	
+	public void tryPossibleStraight(int cur, int numb, ArrayList<VietnameseThirteenHand> ret, VietnameseThirteenHand curHand){
+		ArrayList<Card> temp = getBuckets().get(cur);
+		if(temp.size()==0) return ;
+		boolean haveNext;
+		if(cur==12) haveNext = false;
+		else haveNext = (getBuckets().get(cur+1).size() != 0);
+		if(numb>=3) {
+			if(temp.size()==1) {
+				curHand.addCard(temp.get(0));
+				ret.add((VietnameseThirteenHand)curHand.clone());
+				if(haveNext) tryPossibleStraight(cur+1,numb+1,ret,curHand);
+				return;
+			}
+			else{
+				for(int i = 0; i < temp.size(); i++) {
+					VietnameseThirteenHand newHand = (VietnameseThirteenHand) curHand.clone();
+					newHand.addCard(temp.get(i));
+					ret.add((VietnameseThirteenHand)newHand.clone());
+					if(haveNext) tryPossibleStraight(cur+1,numb+1,ret,newHand);
+				}
+				return;
+			}
+		}
+		for(int i = 0; i < temp.size(); i++) {
+			VietnameseThirteenHand newHand = (VietnameseThirteenHand) curHand.clone();
+			newHand.addCard(temp.get(i));
+			if(haveNext) tryPossibleStraight(cur+1,numb+1,ret,newHand);
+		}
+		return;
 	}
-		
 
 	public ArrayList<VietnameseThirteenHand> getPossibleFours(){
 		ArrayList<Hand> hands=new ArrayList<Hand>();
@@ -331,18 +318,7 @@ public class VietnameseThirteenHand extends Hand {
 		}
 		return ret;
 	}
-	private ArrayList<ArrayList<Card>> getBuckets(){
-		if(buckets.size()==0) createBucket();
-		if (bucketsRight) return buckets;
-		Card temp;
-		for(int i=0;i<cardCount();i++){
-			temp = getCard(i);
-			buckets.get(temp.getValueValue()).add(temp);
-		}
-		return buckets;
-	}
 	
-
 	public ArrayList<VietnameseThirteenHand> getPossiblePairs(){
 		ArrayList<VietnameseThirteenHand> ret = new ArrayList<VietnameseThirteenHand>();
 		VietnameseThirteenHand h= new VietnameseThirteenHand();

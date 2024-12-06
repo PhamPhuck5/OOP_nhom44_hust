@@ -3,7 +3,7 @@ import java.util.*;
 import deck.ThirteenDeck;
 import hand.Hand;
 public abstract class CardGame extends MyObject {
-	ThirteenDeck thirteenDeck; ArrayList<Hand> hands;
+	ArrayList<Hand> hands;
 	protected ArrayList<Player> players = new ArrayList<Player>();
 	protected int maxPlayers = 0; //=0 mean there 0 limit
 	protected int numPlayers = 0; //=0 mean there 0 limit

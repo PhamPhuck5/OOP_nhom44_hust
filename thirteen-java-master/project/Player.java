@@ -1,8 +1,8 @@
 import hand.Hand;
 
 public abstract class Player extends MyObject {
-	String name;
-	CardGame game;
+	protected String name;
+	protected CardGame game;
 	Hand hand;
 	public Player() {
 		this(null,"no name");

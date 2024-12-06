@@ -4,6 +4,7 @@ import hand.Hand;
 import hand.VietnameseThirteenHand;
 
 public class ThirteenGame extends CardGame implements IPlayerAction{
+	protected ThirteenDeck thirteenDeck;
 	public static final int SPADE = 0, CLUB = 1, DIAMOND = 2, HEART = 3;
 	boolean[] passed;
 	HandHistory history;
@@ -32,14 +33,15 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 	public int messageCount(){
 		return messages.size();
 	}
+	/**
+	 * return all playable thirteen hand
+	 */
 	public ArrayList<VietnameseThirteenHand> legalMoves(){
 		ArrayList<VietnameseThirteenHand> hands = ((VietnameseThirteenHand)currentPlayer.getHand()).getPossibleHands();
 		VietnameseThirteenHand h;
-		//hands.add(new VietnameseThirteenHand());		
 		for(int i=hands.size()-1;i>=0;i--){
 			h = (VietnameseThirteenHand)hands.get(i);
 			if(!canPlay(currentPlayer,h)){
-				//System.out.println("REMOVING Hand:"+h.getHandType(h) +" Control:"+h.getHandType(controllingHand));
 				hands.remove(h);
 			}
 		}
@@ -158,6 +160,7 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 			System.out.println(getPlayer(i).getName()+" cards:"+getPlayer(i).getHand().cardCount());
 		}
 	}
+	//pass
 	public boolean hasPassed(Player p){
 		return passed[players.indexOf(p)];
 	}
@@ -177,13 +180,10 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 		}
 		return sum;
 	}
-	/**
-	 * Returns true if all players except 1 has passed
-	 * @return
-	 */
 	public boolean allOthersPassed(){
 		return numberPassed()==players.size()-1; 
 	}
+	//controlling playẻr and play
 	public void playHand(Player p, Hand h){
 		if(canPlay(p,h)) setControllingHand(h);	
 	}
@@ -194,44 +194,49 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 		controllingHand.clearHand();
 		controllingHand.addCards(h);
 	}
+	public boolean canPlay(Player p, Hand h) {
+	    // Người chơi không phải là người điều khiển và bộ bài được chơi rỗng
+	    if (h.isEmpty() && p != getControllingPlayer()) {
+	        return true;
+	    }
+	    // Người chơi là người điều khiển, bộ bài hiện tại rỗng, và bộ bài họ chơi không rỗng
+	    if (p == getControllingPlayer() && getControllingHand().isEmpty() && !h.isEmpty()) {
+	        return true;
+	    }
+	    // Bộ bài có cùng loại và giá trị cao hơn bộ bài điều khiển hiện tại
+	    if (h.getHandType(h) == h.getHandType(controllingHand) 
+				&& h.evaluateHand() > getControllingHand().evaluateHand()) {
+	        return true;
+	    }
+	    return false;
+	}
+	//test
 	public boolean terminalTest(ThirteenGame t){
 		int sum = 0;
 		for(int i=0;i<players.size();i++){
 			if(getPlayer(i).getHand().isEmpty()) sum++;
 		}
-		//echo("Players done: "+sum);
 		return sum >=1 && gameInProgress;
-		//return sum == players.size()-1;
 	}
+	public static void main(String[] args) {
+		ThirteenGame foo = new ThirteenGame();
+		foo.addPlayer(new RandomPlayer(foo,"Jamie"));
+		foo.addPlayer(new AIPlayer(foo,"Lisa"));
+		foo.addPlayer(new RandomPlayer(foo,"Yang"));
+		foo.addPlayer(new RandomPlayer(foo,"Peter"));
+
+		foo.play();
+	}
+	
+	
+	//getter,setter,add
 	public void addPlayer(Player p){
 		if(controllingPlayer == null) setControllingPlayer(p);
 		players.add(p);
 		p.setHand(new VietnameseThirteenHand());
 	}
-	public static void main(String[] args) {
-		ThirteenGame foo = new ThirteenGame();
-		//foo.addPlayer(new QueryPlayer(foo,"Jamie"));
-		foo.addPlayer(new RandomPlayer(foo,"Jamie"));
-		foo.addPlayer(new AIPlayer(foo,"Lisa"));
-		foo.addPlayer(new RandomPlayer(foo,"Yang"));
-		foo.addPlayer(new RandomPlayer(foo,"Peter"));
-		//foo.addPlayer(new QueryPlayer(foo,"Lisa"));
-		//foo.addPlayer(new QueryPlayer(foo,"Yang"));
-		//foo.addPlayer(new QueryPlayer(foo,"Peter"));
-		foo.play();
-	}
 	public int playersCount(){
 		return players.size();
-	}
-	public boolean canPlay(Player p, Hand h){
-		/*System.out.println(h+":"+h.getHandType(h)+" score:"+h.evaluateHand()+" "
-			+controllingHand+":"+h.getHandType(controllingHand)+" score:"+
-			controllingHand.evaluateHand());
-		*/	
-		return (h.isEmpty() && p!=getControllingPlayer()) ||
-			(p==getControllingPlayer() && getControllingHand().isEmpty() && !h.isEmpty()) ||
-			(h.getHandType(h) == h.getHandType(controllingHand) 
-			&& h.evaluateHand() > getControllingHand().evaluateHand());
 	}
 	public void setControllingPlayer(Player p){
 		controllingPlayer = p;
@@ -242,52 +247,25 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 	public int getPlayerIndex(Player p){
 		return players.indexOf(p);
 	}
-	/**
-	 * @return
-	 */
 	public boolean isGameInProgress() {
 		return gameInProgress;
 	}
-
-	/**
-	 * @return
-	 */
 	public ICardGameListener getListener() {
 		return listener;
 	}
-
-
-	/**
-	 * @param listener
-	 */
 	public void setListener(ICardGameListener listener) {
 		this.listener = listener;
 	}
 
-	/**
-	 * @return
-	 */
 	public HandHistory getHistory() {
 		return history;
 	}
-
-	/**
-	 * @param history
-	 */
 	public void setHistory(HandHistory history) {
 		this.history = history;
 	}
-
-	/**
-	 * @return
-	 */
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}
-
-	/**
-	 * @param player
-	 */
 	public void setCurrentPlayer(Player player) {
 		currentPlayer = player;
 	}

@@ -110,21 +110,19 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 	public static boolean isLessOrEqual(Hand a, Hand b){
 		return isLess(a,b)|| isEqual(a,b);
 	}
-//	public static int getSuitValue(Card c){
-//		return 0;
-//	}
+
 	public int getCardValueInHand(int i){
 		return getCard(i).getValueValue();
 	}
-	public static void main(String args[]){
-		/*
+	/*public static void main(String args[]){
+		
 		Deck d = new Deck();
 		d.setDebug(false);
 		Hand h = new Hand();
 		h.addCard(d.dealCard());
 		System.out.println("Hand Test:\n"+h);
-		*/
-	}
+		
+	}*/
 	public String toString(){//deo biet ham de lam gi *note
 		if(cards.size()==0) return "[skip]";
 		String d = "[";
@@ -238,7 +236,7 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 			if(buckets[i]==1){
 				flag = true;
 			}
-			else if(buckets[i]==0 && flag){
+			else if(buckets[i]==0 && flag){//*note
 				return false;
 			}
 		}

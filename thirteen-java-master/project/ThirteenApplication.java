@@ -6,24 +6,7 @@ import deck.ThirteenDeck;
 import hand.VietnameseThirteenHand;
 
 import java.util.*;
-/*
- * Jamie Ly
- * jal39@drexel.edu
- * CS ##:TITLE
- * Assignment ## Program ##
- * 
- * Created on May 28, 2004
- *
- * To change the template for this generated file go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
- */
 
-/**
- * @author DaAznAngel
- *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
- */
 public class ThirteenApplication extends JFrame implements IPlayerAction{
     private static final long serialVersionUID = 1L;//*note
 

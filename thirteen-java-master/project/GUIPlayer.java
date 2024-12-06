@@ -8,7 +8,6 @@ public class GUIPlayer extends Player {
 
 	public GUIPlayer(ThirteenGame g, String n) {
 		super(g, n);
-
 	}
 	public void setApplicationLink(ThirteenApplication a){
 		app = a;
@@ -28,7 +27,6 @@ public class GUIPlayer extends Player {
 		while(!selectedHandIsSet()) 
 			try{
 				wait(200);
-				//System.out.println("Waiting for move.");
 			}
 			catch(InterruptedException e){	}
 	}

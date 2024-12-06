@@ -30,4 +30,9 @@ public class Card extends BaseCard {
 	public int getValueValue(){
 		return VALUEVALUES.get(value);
 	}
+//	public static void main(String[] args) {
+//		Card temp = new Card("diamond","6");
+//		Card.init();
+//		System.out.print(temp.evaluateCard());
+//	}
 }
