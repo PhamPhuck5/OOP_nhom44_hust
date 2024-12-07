@@ -1,6 +1,5 @@
 
 import java.util.*;
-import deck.ThirteenDeck;
 import hand.Hand;
 public abstract class CardGame extends MyObject {
 	ArrayList<Hand> hands;

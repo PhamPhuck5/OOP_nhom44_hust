@@ -60,7 +60,6 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 		}
 	  }
 
-
 	  private static void quickSort(ArrayList<Hand> hands, int lowIndex, int highIndex){
 	        if (hands == null || hands.size() == 0 || lowIndex >= highIndex) {
 	            return;
@@ -114,16 +113,8 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 	public int getCardValueInHand(int i){
 		return getCard(i).getValueValue();
 	}
-	/*public static void main(String args[]){
-		
-		Deck d = new Deck();
-		d.setDebug(false);
-		Hand h = new Hand();
-		h.addCard(d.dealCard());
-		System.out.println("Hand Test:\n"+h);
-		
-	}*/
-	public String toString(){//deo biet ham de lam gi *note
+
+	public String toString(){
 		if(cards.size()==0) return "[skip]";
 		String d = "[";
 		for(int i = 0;i<cards.size();i++){

@@ -1,16 +1,13 @@
 //import java.util.*;
 
+
 import hand.Hand;
 
 public class GUIPlayer extends Player {
-	ThirteenApplication app;
 	Hand selectedHand = null;
 
 	public GUIPlayer(ThirteenGame g, String n) {
 		super(g, n);
-	}
-	public void setApplicationLink(ThirteenApplication a){
-		app = a;
 	}
 
 	public Hand getMove(IPlayerAction g) {
@@ -30,18 +27,10 @@ public class GUIPlayer extends Player {
 			}
 			catch(InterruptedException e){	}
 	}
-	public static void main(String[] args) {
-	}
-	/**
-	 * @return
-	 */
+
 	public Hand getSelectedHand() {
 		return selectedHand;
 	}
-
-	/**
-	 * @param hand
-	 */
 	public void setSelectedHand(Hand hand) {
 		selectedHand = hand;
 	}

@@ -1,7 +1,7 @@
 import hand.Hand;
 
 class ThirteenAppListener implements ICardGameListener{
-	ThirteenApplication appp;
+	ThirteenApplication app;
 	public ThirteenAppListener(ThirteenApplication t){
 		app = t;
 	}
@@ -46,25 +46,25 @@ class ThirteenAppListener implements ICardGameListener{
 	}
 	public void gameEnded() {	}
 }
-class UpdateGui implements Runnable{
-	ThirteenApplication app;
-	
-	public UpdateGui(ThirteenApplication t){
-		app = t;
-	}
-	public synchronized void run(){
-		//System.out.println("Updater running.");
-		while(true){
-			if(app.getGame().terminalTest(app.getGame()))
-				break;
-			app.repaint();
-			try{
-				wait(500);
-				//System.out.println("Gui repainted");
-			}catch(InterruptedException e){
-				System.out.println(e.getMessage());
-			}
-		}
-		System.out.println("UPDATER SHUT DOWN!");
-	}
-}
+//class UpdateGui implements Runnable{
+//	ThirteenApplication app;
+//	
+//	public UpdateGui(ThirteenApplication t){
+//		app = t;
+//	}
+//	public synchronized void run(){
+//		//System.out.println("Updater running.");
+//		while(true){
+//			if(app.getGame().terminalTest(app.getGame()))
+//				break;
+//			app.repaint();
+//			try{
+//				wait(500);
+//				//System.out.println("Gui repainted");
+//			}catch(InterruptedException e){
+//				System.out.println(e.getMessage());
+//			}
+//		}
+//		System.out.println("UPDATER SHUT DOWN!");
+//	}
+//}

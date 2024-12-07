@@ -18,7 +18,6 @@
  */
 import javax.swing.*;
 
-import deck.ThirteenDeck;
 
 import java.awt.*;
 import java.io.*;
@@ -52,6 +51,7 @@ public class Avatar extends JPanel{
 		if(!g.drawImage(portrait,0,0,Color.GREEN,null))
 			System.out.println("Image not loaded.");
 	}*/
+	/*
 	public static void main(String[] args) {
 		ThirteenGame game = new ThirteenGame();
 		game.addPlayer(new QueryPlayer(game,"Jamie"));
@@ -69,5 +69,5 @@ public class Avatar extends JPanel{
 		foo.getContentPane().add(new Avatar(game.getPlayer(0),0));
 		foo.pack();
 		foo.setVisible(true);	
-	}
+	}*/
 }

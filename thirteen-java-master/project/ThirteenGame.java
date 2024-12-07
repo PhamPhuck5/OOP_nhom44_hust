@@ -16,7 +16,6 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 	public ThirteenGame(){
 		maxPlayers = 4;
 		controllingHand = new VietnameseThirteenHand();
-		listener = new ThirteenAdapter();//*note
 		messages = new Stack<String>();
 		history = new HandHistory();
 	}
@@ -67,15 +66,12 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 				currentPlayer = getPlayer(j);
 				currentPlayer.getHand().addCard(thirteenDeck.dealCard());
 			}
-		listener.playerHandsDealt();
-				
-		//System.out.println("Player 1:"+getPlayer(0).getHand() + "Player2:"+getPlayer(1).getHand());
-		
+		listener.playerHandsDealt();		
 		passed = new boolean[players.size()];
 		for(int i=0;i<players.size();i++){
 			passed[i]=false;
 		}
-		ArrayList<Player> winners = new ArrayList<Player>();
+		ArrayList<Player> winners = new ArrayList<Player>();//líst thang win
 		
 		
 		gameInProgress = true;
@@ -84,44 +80,34 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 			for(int i=0;i<players.size();i++){
 				if(terminalTest(this)) break;
 				currentPlayer = getPlayer(i);
-				
-				if(currentPlayer.getHand().isEmpty() && getControllingPlayer()==currentPlayer){
-					setControllingPlayer(getPlayer((i+1)%players.size()));
-					setPassed(currentPlayer);
-					continue;
-				}
-				else if(currentPlayer.getHand().isEmpty()){
-					setPassed(currentPlayer);
-					continue;
-				}else if(hasPassed(currentPlayer)){
+				//*note
+//				if(currentPlayer.getHand().isEmpty() && getControllingPlayer()==currentPlayer){
+//					setControllingPlayer(getPlayer((i+1)%players.size()));
+//					setPassed(currentPlayer);
+//					continue;
+//				}
+//				else if(currentPlayer.getHand().isEmpty()){
+//					setPassed(currentPlayer);
+//					continue;
+//				}
+				if(hasPassed(currentPlayer)){
 					System.out.println(currentPlayer.getName() + " passed.");
 					continue;}
 				
 				if(allOthersPassed()){
 					listener.newRound();
 					controllingHand.clearHand();
-					//System.out.println("Setting all not passed.");
 					setAllNotPassed();	
 				}
 
 				
+//				if(hasPassed(currentPlayer)){
+//					if(winners.indexOf(currentPlayer)==-1) winners.add(currentPlayer);
+//					continue;
+//				}// if the player is out of cards he should stop
 				
-				if(hasPassed(currentPlayer)){
-					if(winners.indexOf(currentPlayer)==-1) winners.add(currentPlayer);
-					continue;
-				}
-				
-				//System.out.println(currentPlayer.getName()+"'s Turn");
-				// if the player is out of cards he should stop
-				
-				//System.out.println("ControllingHand:"+controllingHand);
-				listener.gettingMove();
-				
-				
-				Hand move = getPlayer(i).getMove(this);
-				
-				//echo(currentPlayer.getClass().getName());
-				
+				listener.gettingMove();//update move cho hint
+				Hand move = getPlayer(i).getMove(this);				
 				
 				if(!move.isEmpty()){ // player beats controlling hand
 					setControllingPlayer(currentPlayer);
@@ -136,7 +122,7 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 						listener.newMessage(currentPlayer,taunt);
 					}
 				}else{
-					setPassed(currentPlayer); // player passes
+					setPassed(currentPlayer);
 					listener.playerPassed();
 					addMessage(currentPlayer.getName() + ": I'll pass.");
 					listener.newMessage(currentPlayer,"I'll pass.");
@@ -152,13 +138,10 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 			}
 		}
 		gameInProgress=false;
-		System.out.println("***Winners");
-		for(int i=0;i<winners.size();i++)
-			System.out.println(" ("+i+") "+((Player)winners.get(i)).getName());
-		// get moves until 3 peopel without cards
 		for(int i=0;i<playersCount();i++){
 			System.out.println(getPlayer(i).getName()+" cards:"+getPlayer(i).getHand().cardCount());
 		}
+		//end
 	}
 	//pass
 	public boolean hasPassed(Player p){
@@ -210,7 +193,9 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 	    }
 	    return false;
 	}
-	//test
+	/**
+	 * return true if a player win 
+	 */
 	public boolean terminalTest(ThirteenGame t){
 		int sum = 0;
 		for(int i=0;i<players.size();i++){
@@ -218,6 +203,7 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 		}
 		return sum >=1 && gameInProgress;
 	}
+	/*
 	public static void main(String[] args) {
 		ThirteenGame foo = new ThirteenGame();
 		foo.addPlayer(new RandomPlayer(foo,"Jamie"));
@@ -226,7 +212,7 @@ public class ThirteenGame extends CardGame implements IPlayerAction{
 		foo.addPlayer(new RandomPlayer(foo,"Peter"));
 
 		foo.play();
-	}
+	}*/
 	
 	
 	//getter,setter,add

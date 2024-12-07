@@ -1,26 +1,32 @@
 package deck;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+
 import card.Card;
-import hand.ICardContainer;
 
-
-
-public class ThirteenDeck{
+public class BaseDeck {
+	private static BaseDeck instance;
 	ArrayList<Card> cards = new ArrayList<Card>();
-	public ThirteenDeck(){		
-		String suit, value;
-		Card c;
-		Card.init();
-		for(Iterator<String> i=Card.SUITS.keySet().iterator();i.hasNext();){
-			suit = (String) i.next();
-			for(Iterator<String> j=Card.VALUES.values().iterator();j.hasNext();){
-				value = (String) j.next();
-				c = new Card(suit,value);
-				cards.add(c);
+	public BaseDeck(){
+		if(instance != null){
+			cards.clear();
+			for(int i=0;i<instance.cardCount();i++){
+				cards.add(instance.getCard(i));
 			}
 		}
 	}
-
+	public BaseDeck getInstance() {
+        if (instance == null) {
+            synchronized (ThirteenDeck.class) { // Đảm bảo thread-safety
+                if (instance == null) {
+                    instance = new BaseDeck();
+                }
+            }
+        }
+        return instance;
+	}
 
 	public void shuffle(){
 	    Random rand = new Random();

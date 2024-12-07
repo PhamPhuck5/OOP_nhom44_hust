@@ -133,13 +133,11 @@ public class ThirteenApplication extends JFrame implements IPlayerAction{
 		}
 		CardView.scale(.5);
 		ThirteenApplication app = new ThirteenApplication(foo);
-		((GUIPlayer)foo.getPlayer(0)).setApplicationLink(app);
 		app.pack();
 		app.setVisible(true);
 		foo.play();
 		System.exit(1);
-		//for(int i=0;i<4;i++)
-		//	foo.getPlayer(i).getHand().removeCard(0);
+
 	}
 	public MessagePanel getMessagePanel(){
 		return (MessagePanel) messagePanel;

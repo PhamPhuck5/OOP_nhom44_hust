@@ -48,8 +48,8 @@ public class PlayerView extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);	
 	}
+	/*
 	public static void main(String[] args) {
-
 		ThirteenGame game = new ThirteenGame();
 		game.addPlayer(new QueryPlayer(game,"Jamie"));
 		game.addPlayer(new QueryPlayer(game,"Lisa"));
@@ -67,7 +67,7 @@ public class PlayerView extends JPanel {
 		foo.pack();
 		foo.setVisible(true);	
 
-	}
+	}*/
 
 	public Player getPlayer() {
 		return player;
