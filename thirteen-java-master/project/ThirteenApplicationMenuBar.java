@@ -1,4 +1,8 @@
 import javax.swing.*;
+
+import art.NewGameDialog;
+import art.PlayerView;
+
 import java.awt.event.*;
 import java.util.*;
 /*

@@ -1,8 +1,12 @@
+package art;
 import java.awt.*;
 import javax.swing.*;
 
+import game.ThirteenGame;
 import hand.Hand;
 import hand.VietnameseThirteenHand;
+import player.GUIPlayer;
+import player.Player;
 
 import java.util.*;
 import java.awt.event.*;
@@ -64,7 +68,7 @@ public class HumanPlayerView extends PlayerView implements ActionListener{
 		ready = false;
 		cmbxMoves.removeAllItems();
 		//System.out.println("Current:"+player.getGame().currentPlayer.getName());
-		if(((ThirteenGame)player.getGame()).currentPlayer == player){
+		if(((ThirteenGame)player.getGame()).getCurrentPlayer() == player){
 			ArrayList<VietnameseThirteenHand> v = ((ThirteenGame)player.getGame()).legalMoves();//*note
 			//System.out.println("available moves:"+v);
 			/*

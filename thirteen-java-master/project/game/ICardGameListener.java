@@ -1,4 +1,6 @@
+package game;
 import hand.Hand;
+import player.Player;
 
 public interface ICardGameListener {
 	public void newGameStarted();

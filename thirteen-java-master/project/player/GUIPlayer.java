@@ -1,6 +1,7 @@
 //import java.util.*;
+package player;
 
-
+import game.ThirteenGame;
 import hand.Hand;
 
 public class GUIPlayer extends Player {

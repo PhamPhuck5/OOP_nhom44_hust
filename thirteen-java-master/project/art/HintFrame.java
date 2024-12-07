@@ -1,7 +1,11 @@
+package art;
 import javax.swing.*;
 
 import card.Card;
+import game.ThirteenGame;
 import hand.Hand;
+import player.AIPlayer;
+import player.Player;
 
 import java.awt.*;
 /*

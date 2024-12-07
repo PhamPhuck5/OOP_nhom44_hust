@@ -1,8 +1,3 @@
-import java.awt.*;
-import javax.swing.*;
-
-import deck.ThirteenDeck;
-
 /*
  * Jamie Ly
  * jal39@drexel.edu
@@ -21,33 +16,45 @@ import deck.ThirteenDeck;
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-public class PlayerView extends JPanel {
+package art;
+
+import javax.swing.*;
+
+import file_related.GlobalVariabal;
+import player.Player;
+
+import java.awt.*;
+import java.io.*;
+
+//import java.awt.image.*;
+public class Avatar extends JPanel{
     private static final long serialVersionUID = 1L;//*note
 
+	protected int id;
 	protected Player player;
-	protected HandView handView;
-	
-	public PlayerView(){
-		super();
-	}
-	public PlayerView(Player p,HandView h,boolean vertical) {
+	protected Image portrait;
+	/**
+	 * 
+	 */
+	public Avatar(Player p, int id) {
 		super();
 		player = p;
-		if(vertical) this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		else this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
-		this.add(new Avatar(p,0));
-		this.add(Box.createRigidArea(new Dimension(20,20)));
-		this.add(h);
+		File f = new File(GlobalVariabal.projectAddrest+"avatars/"+p.getName()+".gif");
+		
+		if(f.exists())
+			portrait = Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"avatars/"+p.getName()+".gif");
+		else portrait = Toolkit.getDefaultToolkit().getImage(GlobalVariabal.projectAddrest+"avatars/default.gif");
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		this.add(new JLabel(p.getName()));
+		this.add(new JLabel(new ImageIcon(portrait)));
 		this.setBackground(Color.GREEN);
-		handView = h;
-	}
-	public PlayerView(Player p){
-		this(p,new HandView(p.getHand()),false);
-	}
-	
+		//this.setPreferredSize(new Dimension(100,100));
+	}/*
 	public void paintComponent(Graphics g){
-		super.paintComponent(g);	
-	}
+		super.paintComponent(g);
+		if(!g.drawImage(portrait,0,0,Color.GREEN,null))
+			System.out.println("Image not loaded.");
+	}*/
 	/*
 	public static void main(String[] args) {
 		ThirteenGame game = new ThirteenGame();
@@ -63,23 +70,8 @@ public class PlayerView extends JPanel {
 		}
 		
 		JFrame foo = new JFrame("Avatar Test");
-		foo.getContentPane().add(new PlayerView(game.getPlayer(0)));
+		foo.getContentPane().add(new Avatar(game.getPlayer(0),0));
 		foo.pack();
 		foo.setVisible(true);	
-
 	}*/
-
-	public Player getPlayer() {
-		return player;
-	}
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
-	public HandView getHandView() {
-		return handView;
-	}
-	public void setHandView(HandView view) {
-		handView = view;
-	}
-
 }

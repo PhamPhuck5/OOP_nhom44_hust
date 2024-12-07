@@ -1,7 +1,9 @@
+package art;
 import javax.swing.*;
 
 import card.Card;
 import deck.ThirteenDeck;
+import game.ThirteenGame;
 import hand.Hand;
 import hand.VietnameseThirteenHand;
 

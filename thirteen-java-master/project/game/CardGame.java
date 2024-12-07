@@ -1,10 +1,15 @@
+package game;
 
 import java.util.*;
+
+import file_related.MyObject;
+import player.Player;
 public abstract class CardGame extends MyObject {
 	protected ArrayList<Player> players = new ArrayList<Player>();
 	protected int maxPlayers = 0;
 	protected int numPlayers = 0; 
-	Player currentPlayer;
+	protected Player currentPlayer;
+	
 	public int playersCount(){
 		return players.size();
 	}
@@ -23,4 +28,7 @@ public abstract class CardGame extends MyObject {
 	public ArrayList<Player> getPlayers(){
 		return players;
 	}
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}	
 }

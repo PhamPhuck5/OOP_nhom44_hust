@@ -1,4 +1,8 @@
+package player;
 
+import art.Taunt;
+import file_related.MyObject;
+import game.CardGame;
 import hand.Hand;
 
 public abstract class Player extends MyObject {

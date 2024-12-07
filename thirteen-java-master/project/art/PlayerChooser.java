@@ -1,4 +1,6 @@
 //import java.util.*;
+package art;
+
 import javax.swing.*;
 
 /*

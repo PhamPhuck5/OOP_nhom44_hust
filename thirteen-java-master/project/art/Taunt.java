@@ -1,3 +1,4 @@
+package art;
 
 public class Taunt {
 	public static final Taunt NONE = new Taunt(0,"NONE"); 

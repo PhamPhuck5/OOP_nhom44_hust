@@ -1,4 +1,8 @@
+import art.ControllingHandPanel;
+import art.HistoryFrame;
+import game.ICardGameListener;
 import hand.Hand;
+import player.Player;
 
 class ThirteenAppListener implements ICardGameListener{
 	ThirteenApplication app;

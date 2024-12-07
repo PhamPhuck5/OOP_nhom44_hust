@@ -1,3 +1,4 @@
+package art;
 
 import java.awt.*;
 
@@ -13,6 +14,8 @@ import javax.swing.*;
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
+
+import player.Player;
 
 /**
  * @author DaAznAngel

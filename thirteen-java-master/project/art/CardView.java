@@ -1,7 +1,10 @@
+package art;
 import java.awt.LayoutManager;
 import javax.swing.*;
 
 import card.Card;
+import file_related.GlobalVariabal;
+import game.ThirteenGame;
 
 import java.awt.*;
 //import java.io.File;
