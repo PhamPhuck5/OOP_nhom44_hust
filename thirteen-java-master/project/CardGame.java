@@ -1,11 +1,9 @@
 
 import java.util.*;
-import hand.Hand;
 public abstract class CardGame extends MyObject {
-	ArrayList<Hand> hands;
 	protected ArrayList<Player> players = new ArrayList<Player>();
-	protected int maxPlayers = 0; //=0 mean there 0 limit
-	protected int numPlayers = 0; //=0 mean there 0 limit
+	protected int maxPlayers = 0;
+	protected int numPlayers = 0; 
 	Player currentPlayer;
 	public int playersCount(){
 		return players.size();

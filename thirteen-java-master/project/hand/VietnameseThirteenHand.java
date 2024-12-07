@@ -292,7 +292,7 @@ public class VietnameseThirteenHand extends Hand {
 		ArrayList<VietnameseThirteenHand> ret= new ArrayList<VietnameseThirteenHand>();
 		String lastValue;
 		Card c;
-		if(cardCount()==0) return ret;
+		if(cardCount()==0) return ret; 
 		Hand h;
 		hands.addAll(getPossibleSingles());
 		quickSort(hands);

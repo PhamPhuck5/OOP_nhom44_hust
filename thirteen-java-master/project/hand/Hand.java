@@ -3,8 +3,7 @@ package hand;
 import java.util.*;
 
 import card.Card;
-public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneable {
-	protected ArrayList<Card> cards = new ArrayList<Card>();
+public abstract class Hand extends BaseHand<Card> implements  Comparable<Hand> {
 	protected static Hashtable<String,String> handTypes = new Hashtable<String,String>();
 	protected static boolean initialized = false;
 	public Hand(){
@@ -22,36 +21,30 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 		this();
 		cards.add(c);
 	}
-/*	public static void init(){
-		if (initialized) return;
-		initialized = true;
-	}*/
-	public Card getCard(int i){
-		if(i>=cards.size()) {
-			System.out.print("\n"+"i out of range of cards in hand"+"\n");
-		}
-		return (Card) cards.get(i);
-	}
-	public void addCard(Card c){
-		cards.add(c);
-	}
+	
+
 	public void addCards(Hand h){
 		for(int i=0;i<h.cardCount();i++)
 			addCard(h.getCard(i));
 	}
-
 	public boolean hasCard(Card c){
 		return cards.contains(c);
 	}
-	public boolean isEmpty(){
-		return (cardCount()==0);
+	public int getCardValueInHand(int i){
+		return getCard(i).getValueValue();
 	}
-	public int cardCount(){
-		return cards.size();
+	public Card removeCard(int i){
+		return (Card) cards.remove(i);
 	}
-/*	public static Hand valueOf(Card c){
-		return null;
-	}*/
+	public Card removeCard(Card c){
+		cards.remove(c);
+		return c;
+	}	
+	public void removeCards(Hand h){
+		for(int i=0;i<h.cardCount();i++) {
+			cards.remove(h.getCard(i));
+		}
+	}	
 	
 	  public static void quickSort(ArrayList<Hand> hands)
 	  { if (! hands.isEmpty())
@@ -59,7 +52,6 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 			quickSort(hands, 0, hands.size()-1);
 		}
 	  }
-
 	  private static void quickSort(ArrayList<Hand> hands, int lowIndex, int highIndex){
 	        if (hands == null || hands.size() == 0 || lowIndex >= highIndex) {
 	            return;
@@ -92,27 +84,6 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 	        }
 	  }
 	
-	public abstract String getHandType(Hand h);
-	public abstract int evaluateHand();
-	public static boolean isGreater(Hand a, Hand b){
-		return a.evaluateHand() > b.evaluateHand();
-	}
-	public static boolean isEqual(Hand a, Hand b){
-		return a.evaluateHand() == b.evaluateHand();
-	}
-	public static boolean isLess(Hand a, Hand b){
-		return a.evaluateHand() < b.evaluateHand();
-	}
-	public static boolean isGreaterOrEqual(Hand a, Hand b){
-		return isGreater(a,b) || isEqual(a,b);
-	}
-	public static boolean isLessOrEqual(Hand a, Hand b){
-		return isLess(a,b)|| isEqual(a,b);
-	}
-
-	public int getCardValueInHand(int i){
-		return getCard(i).getValueValue();
-	}
 
 	public String toString(){
 		if(cards.size()==0) return "[skip]";
@@ -141,33 +112,12 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 		}
 		return highest;
 	}
-	
-	
-	public abstract int compareTo(Hand o);
-	public Card removeCard(int i){//ham nay voi ham sau cai thien dc *note
-		return (Card) cards.remove(i);
-	}
-	public Card removeCard(Card c){
-		cards.remove(c);
-		return c;
-	}
+
 	public abstract void sort();
 	public abstract Object clone();
-//	public void removeCards(ArrayList<Card> cards){
-//		cards.clear();
-//	}
-//	public ArrayList<Card> getCards(){
-//		return cards;
-//	}
-	public void removeCards(Hand h){// trong co ve trung vs cai duoi *note
-		//echo("Removing cards:"+h);
-		for(int i=0;i<h.cardCount();i++)
-			cards.remove(h.getCard(i));
-		//cards.remove(h.getCards());
-	}
-	public void clearHand(){
-		cards.clear();
-	}
+	public abstract int compareTo(Hand o);
+
+
 	public boolean equals(Hand h){
 		if(cardCount() != h.cardCount()) return false;
 		
@@ -196,7 +146,8 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 		}
 		return equal;
 	}
-	
+
+	public abstract String getHandType(Hand h);
 	public static boolean isSingle(Hand h){
 		return h.cardCount()==1;
 	}
@@ -233,7 +184,4 @@ public abstract class Hand implements ICardContainer, Comparable<Hand>, Cloneabl
 		}
 		return true;
 	}
-	
-	
-
 }

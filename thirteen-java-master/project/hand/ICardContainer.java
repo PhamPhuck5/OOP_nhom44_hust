@@ -1,9 +1,9 @@
 package hand;
-import card.Card;
+import card.BaseCard;
 
-public interface ICardContainer {
+public interface ICardContainer <T extends BaseCard> {
 	public int cardCount();
-	public boolean hasCard(Card c);
-	public Card getCard(int i);
+	public boolean hasCard(T c);
+	public T getCard(int i);
 }
 
